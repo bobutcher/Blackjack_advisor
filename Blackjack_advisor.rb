@@ -16,11 +16,6 @@ def convert_face_card(user_input)
   end
 end
 
-
-
-
-
-
 first_card = get_user_input("enter your first card, please")
 puts "Here is your first card #{first_card}"
 second_card = get_user_input("enter your second card, please")
@@ -32,7 +27,9 @@ converted_first_card = convert_face_card(first_card)
 converted_second_card = convert_face_card(second_card)
 converted_dealer_card = convert_face_card(dealer_card)
 
-
+soft_hand = converted_first_card + converted_second_card
+hard_hand = converted_first_card + converted_second_card
+pair_hand = converted_first_card
 h = "Hit"
 s = "Stay"
 sp = "Split"
@@ -82,15 +79,10 @@ pair = {
  		    11 => {2 =>  sp, 3 =>  sp, 4 =>  sp, 5 =>  sp, 6 =>  sp, 7 =>  sp, 8 =>  sp, 9 =>  sp, 10 =>  sp, 11 =>  sp},
  		    }
 
-
-      if first_card == second_card
-        puts pair[converted_first_card][converted_second_card]
-      elsif first_card != second_card
-        puts hard[converted_first_card][converted_second_card]
-      elsif first_card || second_card == "A"
-        puts soft[converted_first_card][converted_second_card]
+        if first_card == "A" || second_card == "A"
+        puts soft[soft_hand][converted_dealer_card]
+      elsif first_card == second_card
+        puts pair[pair_hand][converted_dealer_card]
       else
-        puts "sorry, not valid"
-
-
+        puts hard[hard_hand][converted_dealer_card]
       end
